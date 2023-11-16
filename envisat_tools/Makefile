@@ -21,7 +21,7 @@ CC = 		gcc
 #CFLAGS =	-O3
 #CFLAGS =        -m32         # for 64-bit systems, it requires compatibility lib32, no need for epr_api v2.2
 LFLAGS =	-lm
-INSTALL_DIR =	/home/gertmulder/bin/doris/doris_v5_wu_branch
+INSTALL_DIR =	/usr/local/bin
 
 
 
@@ -50,31 +50,23 @@ LIB_SRC = 	epr_api-2.2/src/epr_api.c \
 default: 	envisat_dump_header envisat_dump_data envisat_dump_HH envisat_dump_VV  
 ### compile envisat_dump_header program (dumps envisat header info to stdout) ###
 envisat_dump_header:	BEST
-		$(CC) $(CFLAGS) $(LFLAGS) \
-		-o envisat_dump_header \
-		epr_api-2.2/src/*.o \
-		envisat_dump_header.c
+		$(CC) epr_api-2.2/src/*.o envisat_dump_header.c $(CFLAGS) $(LFLAGS) \
+		-o envisat_dump_header 
 
 ### compile envisat_dump_data program (dumps envisat slc short int data to file) ###
 envisat_dump_data:	BEST
-		$(CC) $(CFLAGS) $(LFLAGS) \
-		-o envisat_dump_data \
-		epr_api-2.2/src/*.o \
-		envisat_dump_data.c
+		$(CC) epr_api-2.2/src/*.o envisat_dump_data.c $(CFLAGS) $(LFLAGS) \
+		-o envisat_dump_data 
 
 ### compile envisat_dump_data program (dumps envisat slc short int data to file) ###
 envisat_dump_HH:  BEST
-		$(CC) $(CFLAGS) $(LFLAGS) \
-    -o envisat_dump_HH \
-    epr_api-2.2/src/*.o \
-    envisat_dump_HH.c
+		$(CC) epr_api-2.2/src/*.o envisat_dump_HH.c $(CFLAGS) $(LFLAGS) \
+    -o envisat_dump_HH 
 
 ### compile envisat_dump_data program (dumps envisat slc short int data to file) ###
 envisat_dump_VV:  BEST
-		$(CC) $(CFLAGS) $(LFLAGS) \
-    -o envisat_dump_VV \
-    epr_api-2.2/src/*.o \
-    envisat_dump_VV.c
+		$(CC) epr_api-2.2/src/*.o envisat_dump_VV.c $(CFLAGS) $(LFLAGS) \
+    -o envisat_dump_VV 
 
 
 
@@ -117,3 +109,4 @@ cleaner:	clean
 		rm -f $(PROGS)
 
 ### EOF.
+
